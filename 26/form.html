@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .error {
+        color: red;
+        font-size: 0.8em;
+    }
+</style>
+</head>
+<body>
+
+<h2>User Registration Form</h2>
+
+<form id="registrationForm" onsubmit="return validateForm()">
+
+    
+    <label for="firstName">First Name <span>*</span>:</label>
+    <input type="text" id="firstName" name="firstName" required>
+    <div id="firstNameError" class="error"></div>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName">
+
+    <label for="userId">User ID (Banasthali ID) <span>*</span>:</label>
+    <input type="text" id="userId" name="userId" pattern="[bB][tT][bB][tT][iI]\d{5}_[a-zA-Z0-9._%+-]+@banasthali\.in" 
+        title="Please enter a valid Banasthali ID (e.g., btbti21045_chhavi@banasthali.in)" required>
+    <div id="userIdError" class="error"></div>
+
+    <label for="password">Password <span>*</span>:</label>
+    <input type="password" id="password" name="password" required>
+    <div id="passwordError" class="error"></div>
+
+    <label for="confirmPassword">Confirm Password <span>*</span>:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <div id="confirmPasswordError" class="error"></div>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address">
+
+    <label for="email">Email ID <span>*</span>:</label>
+    <input type="email" id="email" name="email" required>
+    <div id="emailError" class="error"></div>
+
+    <label for="phoneNumber">Contact Number <span>*</span>:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" 
+        title="Please enter a 10-digit phone number" required>
+    <div id="phoneNumberError" class="error"></div>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    function validateForm() {
+        // Reset error messages
+        document.querySelectorAll('.error').forEach(element => {
+            element.textContent = '';
+        });
+
+        let valid = true;
+
+        // Validation for First Name
+        let firstName = document.getElementById('firstName').value;
+        if (!firstName) {
+            document.getElementById('firstNameError').textContent = 'First Name is required';
+            valid = false;
+        }
+
+        // Validation for User ID
+        let userId = document.getElementById('userId').value;
+        let userIdPattern = /[bB][tT][bB][tT][iI]\d{5}_[a-zA-Z0-9._%+-]+@banasthali\.in/;
+        if (!userIdPattern.test(userId)) {
+            document.getElementById('userIdError').textContent = 'Please enter a valid Banasthali ID';
+            valid = false;
+        }
+
+        // Validation for Password
+        let password = document.getElementById('password').value;
+        if (!password) {
+            document.getElementById('passwordError').textContent = 'Password is required';
+            valid = false;
+        }
+
+        // Validation for Confirm Password
+        let confirmPassword = document.getElementById('confirmPassword').value;
+        if (password !== confirmPassword) {
+            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+            valid = false;
+        }
+
+        // Validation for Email
+        let email = document.getElementById('email').value;
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+        }
+          
+            // Validation for Phone Number
+    let phoneNumber = document.getElementById('phoneNumber').value;
+    let phoneNumberPattern = /^[0-9]{10}$/;
+    if (!phoneNumberPattern.test(phoneNumber)) {
+        document.getElementById('phoneNumberError').textContent = 'Please enter a 10-digit phone number';
+        valid = false;
+    }
+
+    return valid;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layout Template</title>
+<style>
+    /* Style for header */
+    header {
+        border: 2px solid #333; /* Border around the header */
+        background-color: #f0f0f0; /* Background color for the header */
+        padding: 10px; /* Padding inside the header */
+        text-align: center; /* Center the text */
+    }
+
+    /* Style for paragraphs */
+    .column {
+        float: left; /* Float paragraphs to line up side by side */
+        width: 50%; /* Set width for each paragraph */
+        border: 2px solid #333; /* Border around paragraphs */
+        background-color: #ddd; /* Background color for paragraphs */
+        padding: 10px; /* Padding inside paragraphs */
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Header</h1>
+</header>
+
+<div class="clearfix">
+    <div class="column">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+    </div>
+    <div class="column">
+        <p>Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+    </div>
+</div>
+
+</body>
+</html>

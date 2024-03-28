@@ -1,0 +1,13 @@
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transformable {
+    transition: transform 0.3s ease; /* Add smooth transition effect */
+}
+
+.transformable:hover {
+    transform: scale(1.2); /* Increase size by 20% */
+}
